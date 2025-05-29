@@ -2,7 +2,7 @@
 import { useParams } from "next/navigation"
 import { Separator } from "@/components/ui/separator";
 import FilterControlsCategory from "./filter-controls-category";
-import { ResponseType } from "@/.next/types/response";
+import { ResponseType } from "@/types/response";
 import SkeletonSchema from "@/components/skeleton-schema";
 import ProductCard from "../components/product-card";
 import { ProductType } from "@/types/products";
