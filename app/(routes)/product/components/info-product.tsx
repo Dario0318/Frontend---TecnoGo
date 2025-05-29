@@ -1,4 +1,4 @@
-import { ProductType } from '@/.next/types/products'
+import { ProductType } from '@/types/products'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { formatPrice } from '@/lib/formatPrice'

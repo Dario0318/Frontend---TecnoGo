@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import { ResponseType } from "@/.next/types/response";
+import { ResponseType } from "@/types/response";
 import { useGetFeaturedProducts } from "@/api/useGetFeaturedProducts";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import SkeletonSchema from "./skeleton-schema";
-import { ProductType } from "@/.next/types/products";
+import { ProductType } from "@/types/products";
 import {Card, CardContent} from "./ui/card";
 import { Expand, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation"; 

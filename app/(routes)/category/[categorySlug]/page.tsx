@@ -5,7 +5,7 @@ import FilterControlsCategory from "./filter-controls-category";
 import { ResponseType } from "@/.next/types/response";
 import SkeletonSchema from "@/components/skeleton-schema";
 import ProductCard from "../components/product-card";
-import { ProductType } from "@/.next/types/products";
+import { ProductType } from "@/types/products";
 import { useState } from "react";
 import { useGetCategoryProduct } from "@/api/getCategoryProduct";
 

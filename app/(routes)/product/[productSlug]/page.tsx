@@ -1,6 +1,6 @@
 "use client"
 import { useParams } from "next/navigation"
-import { ResponseType } from "@/.next/types/response";
+import { ResponseType } from "@/types/response";
 import { useGetProductBySlug } from "@/api/getProductBySlug";
 import SkeletonProduct from "../components/skeletonProduct";
 import CarouselProduct from "../components/carousel-product";

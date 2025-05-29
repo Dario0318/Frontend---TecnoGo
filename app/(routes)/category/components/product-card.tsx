@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { ProductType } from '@/.next/types/products';
+import { ProductType } from '@/types/products';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import IconButton from '@/components/icon-button';

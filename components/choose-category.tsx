@@ -2,8 +2,8 @@
 "use client" 
 import React from 'react'
 import { useGetCategories } from '@/api/getProducts'
-import { ResponseType } from '@/.next/types/response'
-import { CategoryType } from '@/.next/types/category'  
+import { ResponseType } from '@/types/response'
+import { CategoryType } from '@/types/category'  
 import { Carousel , CarouselContent , CarouselItem, CarouselNext , CarouselPrevious  } from '@/components/ui/carousel'
 import { Card, CardContent } from './ui/card'
 import  SkeletonSchema  from './skeleton-schema'
