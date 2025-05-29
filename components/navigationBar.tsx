@@ -2,7 +2,6 @@ import {
   Command,
   CommandInput,
 } from "@/components/ui/command"
-import "tailwindcss";
 const navigationBar = () => {
   return (
     <div className="md:min-w-[450px] px-2 md:px-4 items-center">

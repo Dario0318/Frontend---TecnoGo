@@ -5,8 +5,6 @@ import MenuList from "./menu-list";
 import ItemMenuMobile from "./item-menu-mobile";
 import { ModeToggle } from "./toggle-theme";
 import NavigationBar  from "./navigationBar";
-import "tailwindcss";
-
 const Navbar = () => {
     const router = useRouter()
   return (

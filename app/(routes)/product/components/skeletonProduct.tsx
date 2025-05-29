@@ -1,5 +1,4 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import "tailwindcss";
 const SkeletonProduct  = () =>  {
     return (
         <div className="grid sm:grid-cols-2 sm:py-16 sm:px-40">

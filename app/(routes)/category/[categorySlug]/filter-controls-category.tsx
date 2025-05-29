@@ -1,6 +1,5 @@
 import React from 'react'
 import FilterOrigin from '../components/filter-origin';
-import "tailwindcss";
 type FiltersControlsCategoryProps = {
   setFilterOrigin : ( origin : string ) => void 
 }

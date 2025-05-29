@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import React from 'react';
 import { Separator } from './ui/separator';
-import "tailwindcss";
 const dataFooter = [
     {
         id : 1 ,
