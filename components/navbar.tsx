@@ -1,30 +1,40 @@
 "use client"
-import { Heart, ShoppingCart, User } from "lucide-react";
+import { BaggageClaim, Heart, ShoppingCart, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import MenuList from "./menu-list";
 import ItemMenuMobile from "./item-menu-mobile";
 import { ModeToggle } from "./toggle-theme";
-import NavigationBar  from "./navigationBar";
+import { useCart } from "@/hooks/use-cart";
+import { useLovedProducts } from "@/hooks/use-loved-products";
 const Navbar = () => {
     const router = useRouter()
+    const cart = useCart()
+    const { lovedItem }= useLovedProducts()
   return (
     <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl">
         <h1 className="text-3xl" onClick={() => router.push("/")}>Tecno
         <span className="font-bold">Go</span>
         </h1>
         <div className="item-center justify-between hidden sm:flex ">
-            <NavigationBar />
             <MenuList/>
         </div>
         <div className="flex sm:hidden">
             <ItemMenuMobile/>
         </div>
         <div className="flex item-center justify-between gap-2 sm:gap-7">
-            <ShoppingCart strokeWidth="1" className="cursor-pointer transition-colors hover:bg-accent hover:text-accent-foreground" 
+            {cart.items.length == 0 ? 
+            <ShoppingCart strokeWidth="1" className="cursor-pointer" 
             onClick={() => router.push("/cart")}/>
-            <Heart strokeWidth="1" className="cursor-pointer transition-colors hover:bg-accent hover:text-accent-foreground " 
+                : (
+                    <div className="flex gap-1" onClick={() => router.push("/cart")}>
+                        <BaggageClaim strokeWidth={1} className="cursor-pointer"/>
+                        <span>{cart.items.length}</span>
+                    </div>
+            )}
+            <Heart strokeWidth="1"
+             className={`cursor-pointer ${lovedItem.length > 0 && 'fill-black dark:fill-white'}`} 
             onClick={() => router.push("/loved-products")}/>
-            <User strokeWidth="1" className="cursor-pointer transition-colors hover:bg-accent hover:text-accent-foreground"/>
+            <User strokeWidth="1" className="cursor-pointer"/>
             <ModeToggle />
         </div>
     </div>
