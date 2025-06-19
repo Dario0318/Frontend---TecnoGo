@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+"use client"
 import React from 'react'
 import { ProductType } from '@/types/products';
 import Link from 'next/link';
@@ -6,55 +6,86 @@ import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carouse
 import IconButton from '@/components/icon-button';
 import { Expand, ShoppingCart } from 'lucide-react';
 import { formatPrice } from '@/lib/formatPrice';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useCart } from "@/hooks/use-cart";
 
 type ProductCardProps = {
     product: ProductType
 }
 
-const ProductCard = (props:ProductCardProps) => {
-    const { product } = props 
-  return (
-    <Link href={`/product/${product.slug}`}
-    className='relative p-2 transition-all duration-100 rounded-lg hover:scale-105'>
-        <div className='absolute flex items-center justify-between gap-9 px-2 z-[1] top'>
-            <p className='px-2 py-1 text-xs text-white bg-black 
-            rounded-full dark:bg-white dark:text-black w-fit'>{product.taste}</p>
-             <p className='px-2 py-1 text-xs text-white bg-yellow-900 
-             rounded-full dark:bg-white dark:text-black w-fit'>{product.origin}</p>
+const ProductCard = (props: ProductCardProps) => {
+    const { product } = props;
+    const router = useRouter();
+    const { addItem } = useCart();
+    
+    return (
+        <div className="group relative overflow-hidden rounded-lg border border-gray-200 shadow-sm transition-all hover:shadow-md dark:border-gray-700">
+            <Link href={`/product/${product.slug}`} className="block">
+                {/* Badges */}
+                <div className="absolute left-3 top-3 z-10 flex flex-col items-start gap-2">
+                    {product.taste && (
+                        <span className="rounded-full bg-emerald-600 px-3 py-1 text-xs font-medium text-white dark:bg-emerald-700">
+                            {product.taste}
+                        </span>
+                    )}
+                    {product.origin && (
+                        <span className="rounded-full bg-gray-800 px-3 py-1 text-xs font-medium text-white dark:bg-gray-700">
+                            {product.origin}
+                        </span>
+                    )}
+                </div>
+
+                {/* Image Carousel */}
+                <Carousel
+                    opts={{ align: "start" }}
+                    className="w-full"
+                >
+                    <CarouselContent>
+                        {Array.isArray(product.images) && product.images.map((image) => (
+                            <CarouselItem key={image.id}>
+                                <div className="relative aspect-square">
+                                    <Image
+                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`}
+                                        alt={product.productName}
+                                        fill
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                                    />
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                </Carousel>
+
+                {/* Product Info */}
+                <div className="p-4">
+                    <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+                        {product.productName}
+                    </h3>
+                    <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
+                        {formatPrice(product.price)}
+                    </p>
+                </div>
+            </Link>
+
+            {/* Action Buttons */}
+            <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 transition-opacity group-hover:opacity-100 group-hover:bg-black/20">
+                <IconButton 
+                    onclick={() => 
+                         router.push(`/product/${product.slug}`)
+                    }
+                    icon={<Expand size={20} className="text-white" />}
+                    className="bg-white/80 hover:bg-white text-gray-800"
+                />
+                <IconButton 
+                    onclick={() => addItem(product)}
+                    icon={<ShoppingCart size={20} className="text-white" />}
+                    className="bg-white/80 hover:bg-white text-gray-800"
+                />
+            </div>
         </div>
-        <Carousel
-        opts={{
-            align: "start"
-        }}
-        className='w-full max-w-sm'
-        >
-            <CarouselContent>
-                {Array.isArray(product.images) && product.images.map((images) =>(
-                    <CarouselItem key={images.id} className='group'>
-                        <img src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${images.url}`}
-                        alt="Image"
-                        className='rounded-xl'
-                        />
-                        <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
-                            <div className="flex justify-center gap-x-6">
-                                <IconButton onclick={() => console.log("buena idea")}
-                                    icon={<Expand size={20}/>}
-                                    className="text-gray-600"
-                                />
-                                <IconButton onclick={() => console.log ("Add Item")}
-                                    icon={<ShoppingCart size={20}/>}
-                                    className="text-gray-600"
-                                />
-                            </div>
-                        </div>
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
-        </Carousel>
-        <p className='text-2xl text-center'>{product.productName}</p>
-        <p className='font-bold text-center'>{formatPrice(product.price)}</p>
-    </Link>
-  )
-}
+    );
+};
 
 export default ProductCard;

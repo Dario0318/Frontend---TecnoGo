@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { ReactNode } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import NextTopLoader from 'nextjs-toploader';
+import LayoutWrapper from "@/components/LayoutWrapper";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,10 +48,10 @@ export default function RootLayout({ children }: RootLayoutProps){
               speed={100}
               shadow="0 0 10px #2299DD,0 0 5px #2299DD"
               />
-            <Navbar />
-            {children}
-            <Toaster />
-            <Footer />
+              <LayoutWrapper >
+              {children}
+              <Toaster />
+              </LayoutWrapper >
           </ThemeProvider>
       </body>
     </html>
