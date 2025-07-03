@@ -23,7 +23,7 @@ const ProductImageMiniature = (props: ProductImageMiniatureProps) => {
             )}
         >
             <Image
-                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${url}`}
+                src={`${url}`}
                 alt={`Imagen del producto ${slug}`}
                 fill
                 className="object-cover p-1"
