@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useSearchParams, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useResetPassword } from "@/api/useResetPassword"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -9,10 +9,8 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
-export function ResetPasswordForm() {
-  const searchParams = useSearchParams()
+export function ResetPasswordForm({ code }: { code: string }) {
   const router = useRouter()
-  const code = searchParams.get("code") // Token de la URL
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const { resetPassword, loading, error, success } = useResetPassword()

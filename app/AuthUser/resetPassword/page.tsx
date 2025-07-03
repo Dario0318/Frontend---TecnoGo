@@ -1,5 +1,5 @@
-import { ResetPasswordForm } from "@/app/AuthUser/resetPassword/components/resetPasswordForm"
+import { ResetPasswordForm } from "./components/resetPasswordForm"
 
-export default function ResetPasswordPage() {
-  return <ResetPasswordForm />
+export default function ResetPasswordPage({ searchParams }: { searchParams: { code?: string } }) {
+  return <ResetPasswordForm code={searchParams.code || ""} />
 }
