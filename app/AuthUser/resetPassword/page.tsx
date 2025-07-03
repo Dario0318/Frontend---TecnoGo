@@ -1,5 +1,10 @@
 import { ResetPasswordForm } from "./components/resetPasswordForm"
 
-export default function ResetPasswordPage({ searchParams }: { searchParams: { code?: string } }) {
+// 👇 Este es el tipo correcto según Next.js 14+
+type Props = {
+  searchParams: { code?: string }
+}
+
+export default function ResetPasswordPage({ searchParams }: Props) {
   return <ResetPasswordForm code={searchParams.code || ""} />
 }
