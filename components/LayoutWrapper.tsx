@@ -7,7 +7,8 @@ import Footer from "./footer"
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const hideLayout = pathname === "/login"
+  const hiddenPaths = ["/AuthUser/login","/AuthUser/register"]
+  const hideLayout = hiddenPaths.includes(pathname)
 
   return (
     <>

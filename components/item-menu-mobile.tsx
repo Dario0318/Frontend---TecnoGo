@@ -13,6 +13,8 @@ const ItemMenuMobile = () => {
         <PopoverContent>
             <Link href="/categories/cocina" className="block">cocina</Link>
             <Link href="/categories/sala" className="block">sala</Link>
+            <Link href="/categories/cocina" className="block">Climatizacion</Link>
+            <Link href="/categories/sala" className="block">Refrigeradoras</Link>
         </PopoverContent>
     </Popover>
   )

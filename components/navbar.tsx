@@ -1,5 +1,5 @@
 "use client"
-import { BaggageClaim, Heart, ShoppingCart, User } from "lucide-react"
+import { BaggageClaim, Heart, ShoppingCart} from "lucide-react"
 import { useRouter } from "next/navigation"
 import MenuList from "./menu-list"
 import ItemMenuMobile from "./item-menu-mobile"
@@ -7,6 +7,7 @@ import { ModeToggle } from "./toggle-theme"
 import { useCart } from "@/hooks/use-cart"
 import { useLovedProducts } from "@/hooks/use-loved-products"
 import { Badge } from "./ui/badge"
+import  UserButton  from "./userButton" 
 
 const Navbar = () => {
     const router = useRouter()
@@ -63,13 +64,9 @@ const Navbar = () => {
                             <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
                         )}
                     </div>
-
-                    {/* User Icon */}
-                    <div 
-                        className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
-                        onClick={() => router.push("/login")}
-                    >
-                        <User className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                    {/* User ButtonComponent */}
+                    <div className="hidden md:flex md:justify-center">
+                        <UserButton />
                     </div>
 
                     {/* Mobile Menu Button */}

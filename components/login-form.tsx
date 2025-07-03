@@ -103,7 +103,7 @@ export function LoginForm({
       <div className="text-center text-sm text-gray-600 dark:text-gray-400">
         ¿No tienes una cuenta?{" "}
         <Link
-          href="/register"
+          href="/AuthUser/register"
           className="font-medium text-emerald-600 hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 underline-offset-4 hover:underline"
         >
           Regístrate

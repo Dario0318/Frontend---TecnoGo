@@ -47,6 +47,11 @@ const categories = [
     slug: "electrodomesticos-cocina",
     description: "Todo para equipar tu cocina"
   },
+    {
+    title: "Mas categorias",
+    slug: "/Categories",
+    description: "Descubre todas nuestras categorias"
+  },
 ]
 
 const MenuList = () => {
