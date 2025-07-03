@@ -1,11 +1,10 @@
 import { ResetPasswordForm } from "./components/resetPasswordForm"
 
-type Props = {
-  searchParams: {
-    code?: string
-  }
-}
-
-export default function ResetPasswordPage({ searchParams }: Props) {
-  return <ResetPasswordForm code={searchParams.code || ""} />
+export default function ResetPasswordPage({
+  searchParams,
+}: {
+  searchParams: { code?: string }
+}) {
+  const code = typeof searchParams.code === "string" ? searchParams.code : ""
+  return <ResetPasswordForm code={code} />
 }

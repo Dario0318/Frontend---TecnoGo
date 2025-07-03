@@ -9,11 +9,8 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
-type Props = {
-  code: string
-}
 
-export function ResetPasswordForm({ code } : Props) {
+export function ResetPasswordForm({ code } :{ code: string }) {
   const router = useRouter()
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
