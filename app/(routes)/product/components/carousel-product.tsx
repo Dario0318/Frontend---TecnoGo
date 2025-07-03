@@ -34,7 +34,7 @@ const CarouselProduct = (props: CarouselProductProps) => {
                             onClick={() => scrollTo(index)}
                         >
                             <Image
-                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`}
+                                src={`${image.url}`}
                                 alt={`Miniatura ${index + 1}`}
                                 fill
                                 className="object-cover"
@@ -61,7 +61,7 @@ const CarouselProduct = (props: CarouselProductProps) => {
                                 <CarouselItem key={image.id}>
                                     <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
                                         <Image
-                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`}
+                                            src={`${image.url}`}
                                             alt="Imagen del producto"
                                             fill
                                             className="object-cover"
@@ -87,7 +87,7 @@ const CarouselProduct = (props: CarouselProductProps) => {
                                 onClick={() => scrollTo(index)}
                             >
                                 <Image
-                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`}
+                                    src={`${image.url}`}
                                     alt={`Miniatura ${index + 1}`}
                                     fill
                                     className="object-cover"

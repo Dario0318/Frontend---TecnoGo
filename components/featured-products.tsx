@@ -44,7 +44,7 @@ const FeaturedProducts = () => {
                             ) : (
                                 result?.map((product: ProductType) => {
                                     const image = product.images?.find(img => img?.url);
-                                    const imageUrl = image ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}` : "/fallback.jpg";
+                                    const imageUrl = image ? `${image.url}` : "/fallback.jpg";
                                     
                                     return (
                                         <CarouselItem key={product.id} className="pl-1 basis-1/2 sm:basis-1/3 lg:basis-1/4">

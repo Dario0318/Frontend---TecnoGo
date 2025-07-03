@@ -49,7 +49,7 @@ const ChooseCategory = () => {
                             ) : (
                                 result.map((category: CategoryType) => {
                                     const imageUrl = category.mainmedia ? 
-                                        `${process.env.NEXT_PUBLIC_BACKEND_URL}${category.mainmedia.url}` : 
+                                        `${category.mainmedia.url}` : 
                                         "/category-fallback.jpg"
                                     
                                     return (

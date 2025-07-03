@@ -46,7 +46,7 @@ const ProductCard = (props: ProductCardProps) => {
                             <CarouselItem key={image.id}>
                                 <div className="relative aspect-square">
                                     <Image
-                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`}
+                                        src={`${image.url}`}
                                         alt={product.productName}
                                         fill
                                         className="object-cover transition-transform duration-300 group-hover:scale-105"
