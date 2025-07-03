@@ -1,5 +1,6 @@
 "use client"
 
+import { useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useResetPassword } from "@/api/useResetPassword"
@@ -9,11 +10,10 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
-type Props = {
-  code: string
-}
+export function ResetPasswordForm() {
+  const searchParams = useSearchParams()
+  const code = searchParams.get("code") ?? ""
 
-export function ResetPasswordForm({ code } : Props) {
   const router = useRouter()
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
