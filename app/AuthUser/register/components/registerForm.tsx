@@ -1,3 +1,8 @@
+"use client"
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useRegister } from "@/api/useRegister"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,6 +21,28 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const router = useRouter()
+  const { register, loading, error } = useRegister()
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (password !== confirmPassword) {
+      alert("Las contraseñas no coinciden")
+      return
+    }
+
+    const result = await register(name, email, password)
+
+    if (result) {
+      router.push("/") // o "/dashboard"
+    }
+  }
+
   return (
     <div className={cn("w-full max-w-md", className)} {...props}>
       <Card className="border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
@@ -29,73 +56,64 @@ export function LoginForm({
         </CardHeader>
         
         <CardContent>
-          <form className="space-y-6">
-            {/* Campo del nombre */}
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-3">
-              <Label htmlFor="email" className="text-gray-700 dark:text-gray-300">
-                Ingrese su nombre
-              </Label>
+              <Label htmlFor="nameUser">Ingrese su nombre</Label>
               <Input
                 id="nameUser"
                 type="text"
                 placeholder="Mi-nombre"
                 required
-                className="focus:ring-2 focus:ring-emerald-600 dark:focus:ring-emerald-400 border-gray-300 dark:border-gray-600"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
-            {/* Campo de Email */}
+
             <div className="space-y-3">
-              <Label htmlFor="email" className="text-gray-700 dark:text-gray-300">
-                Correo Electrónico
-              </Label>
+              <Label htmlFor="email">Correo Electrónico</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="tu@email.com"
                 required
-                className="focus:ring-2 focus:ring-emerald-600 dark:focus:ring-emerald-400 border-gray-300 dark:border-gray-600"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
-            {/* Campo de Contraseña */}
             <div className="space-y-3">
-              <Label htmlFor="password" className="text-gray-700 dark:text-gray-300">
-                Contraseña
-              </Label>
+              <Label htmlFor="password">Contraseña</Label>
               <Input 
                 id="password" 
                 type="password" 
                 required 
                 placeholder="Mínimo 8 caracteres"
-                className="focus:ring-2 focus:ring-emerald-600 dark:focus:ring-emerald-400 border-gray-300 dark:border-gray-600"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
-            {/* Confirmar Contraseña */}
             <div className="space-y-3">
-              <Label htmlFor="confirmPassword" className="text-gray-700 dark:text-gray-300">
-                Confirmar Contraseña
-              </Label>
+              <Label htmlFor="confirmPassword">Confirmar Contraseña</Label>
               <Input 
                 id="confirmPassword" 
-                name="confirmPassword" 
                 type="password" 
                 required 
                 placeholder="Repite tu contraseña"
-                className="focus:ring-2 focus:ring-emerald-600 dark:focus:ring-emerald-400 border-gray-300 dark:border-gray-600"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
 
-            {/* Botón de Registro */}
-            <Button 
-              type="submit" 
-              className="w-full bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-400 dark:hover:bg-emerald-500 dark:text-gray-900"
-            >
-              Registrarse
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Registrando..." : "Registrarse"}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
 
-            {/* Enlace a Login */}
+            {error && (
+              <p className="text-sm text-red-500 text-center">{error}</p>
+            )}
+
             <p className="text-center text-sm text-gray-600 dark:text-gray-400">
               ¿Ya tienes una cuenta?{" "}
               <Link 

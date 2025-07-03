@@ -1,3 +1,8 @@
+"use client"
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useLogin } from "@/api/useLogin" // Importa el hook aquí
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,102 +15,90 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const { login, loading, error } = useLogin()
+  const router = useRouter()
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const result = await login(email, password)
+    if (result) {
+      router.push("/") // Redirige a la página principal
+    }
+  }
+
   return (
     <form 
       className={cn("flex flex-col gap-6 w-full", className)} 
+      onSubmit={handleSubmit}
       {...props}
     >
-      {/* Header */}
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-          Inicia sesión en tu cuenta
-        </h1>
+        <h1 className="text-2xl font-bold">Inicia sesión en tu cuenta</h1>
         <p className="text-muted-foreground text-sm">
           Ingresa tus credenciales para acceder a tu cuenta
         </p>
       </div>
 
-      {/* Form Fields */}
       <div className="grid gap-6">
-        {/* Email Field */}
         <div className="grid gap-3">
-          <Label htmlFor="email" className="text-gray-700 dark:text-gray-300">
-            Correo electrónico
-          </Label>
+          <Label htmlFor="email">Correo electrónico</Label>
           <Input
             id="email"
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="tu@email.com"
             required
-            className="focus:ring-2 focus:ring-emerald-600 dark:focus:ring-emerald-400 border-gray-300 dark:border-gray-600"
           />
         </div>
 
-        {/* Password Field */}
         <div className="grid gap-3">
           <div className="flex items-center">
-            <Label htmlFor="password" className="text-gray-700 dark:text-gray-300">
-              Contraseña
-            </Label>
-            <Link
-              href="/forgot-password"
-              className="ml-auto text-sm text-emerald-600 hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 underline-offset-4 hover:underline"
-            >
+            <Label htmlFor="password">Contraseña</Label>
+            <Link href="/forgot-password" className="ml-auto text-sm text-emerald-600 hover:underline">
               ¿Olvidaste tu contraseña?
             </Link>
           </div>
           <Input
             id="password"
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
-            className="focus:ring-2 focus:ring-emerald-600 dark:focus:ring-emerald-400 border-gray-300 dark:border-gray-600"
           />
         </div>
 
-        {/* Remember Me Checkbox */}
         <div className="flex items-center gap-2">
-          <input
-            id="remember-me"
-            type="checkbox"
-            className="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-600 dark:border-gray-600 dark:bg-gray-800 dark:ring-offset-gray-800 dark:focus:ring-emerald-400"
-          />
-          <Label htmlFor="remember-me" className="text-sm text-gray-700 dark:text-gray-300">
-            Recordar mi cuenta
-          </Label>
+          <input id="remember-me" type="checkbox" className="h-4 w-4" />
+          <Label htmlFor="remember-me" className="text-sm">Recordar mi cuenta</Label>
         </div>
 
-        {/* Submit Button */}
-        <Button 
-          type="submit" 
-          className="w-full bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-400 dark:hover:bg-emerald-500 dark:text-gray-900"
-        >
-          Iniciar sesión
+        <Button type="submit" className="w-full" disabled={loading}>
+          {loading ? "Iniciando..." : "Iniciar sesión"}
           <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
 
-        {/* Divider */}
+        {error && (
+          <p className="text-sm text-red-500 text-center">{error}</p>
+        )}
+
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t border-gray-300 dark:border-gray-700" />
+            <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-white px-2 text-gray-500 dark:bg-gray-900 dark:text-gray-400">
-              O continúa con
-            </span>
+            <span className="bg-white px-2 dark:bg-gray-900 text-gray-500">O continúa con</span>
           </div>
         </div>
 
-        {/* Social Auth Buttons */}
         <AuthButton />
       </div>
 
-      {/* Sign Up Link */}
-      <div className="text-center text-sm text-gray-600 dark:text-gray-400">
+      <div className="text-center text-sm">
         ¿No tienes una cuenta?{" "}
-        <Link
-          href="/AuthUser/register"
-          className="font-medium text-emerald-600 hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 underline-offset-4 hover:underline"
-        >
+        <Link href="/AuthUser/register" className="text-emerald-600 hover:underline">
           Regístrate
         </Link>
       </div>
