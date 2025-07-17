@@ -29,7 +29,7 @@ const Navbar = () => {
 
                 {/* Desktop Menu - Centered */}
                 <div className="hidden flex-1 mx-4 md:flex md:justify-center">
-                    <MenuList />
+                    <MenuList/>
                 </div>
 
                 {/* Action Icons */}

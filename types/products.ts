@@ -16,4 +16,5 @@ export type ProductType = {
     slug: string;
     categoryName: string;
   };
+  isOffered:boolean;
 };

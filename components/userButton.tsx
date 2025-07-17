@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { User, LogIn, UserPlus, LogOut, KeyIcon } from 'lucide-react'
+import { User, LogIn, UserPlus, LogOut, KeyIcon, BoxIcon } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import {
@@ -97,6 +97,20 @@ const UserButton = () => {
                     <span>Cambiar contraseña</span>
                     <KeyIcon className="w-4 h-4" />
                   </button>
+                </NavigationMenuLink>
+
+                <NavigationMenuLink asChild>
+                  <Link
+                    href="/history"
+                    className={cn(
+                      "flex items-center gap-3 w-full p-2 rounded-md text-sm font-medium",
+                      "text-gray-700 hover:bg-emerald-50 hover:text-emerald-600",
+                      "dark:text-gray-300 dark:hover:bg-emerald-900/30 dark:hover:text-emerald-400"
+                    )}
+                  >
+                    <span>Historial de Pedidos</span>
+                    <BoxIcon className="w-4 h-4" />
+                  </Link>
                 </NavigationMenuLink>
 
                 <NavigationMenuLink asChild>

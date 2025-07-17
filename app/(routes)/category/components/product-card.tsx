@@ -35,6 +35,13 @@ const ProductCard = (props: ProductCardProps) => {
                         </span>
                     )}
                 </div>
+                {product.isOffered && (
+                 <div className="absolute right-3 top-3 z-10">
+                    <span className="rounded-md bg-red-600/90 px-2 py-1 text-xs font-semibold text-white shadow-md">
+                          En oferta
+                    </span>
+                 </div>
+                )}
 
                 {/* Image Carousel */}
                 <Carousel

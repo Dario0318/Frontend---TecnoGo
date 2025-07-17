@@ -27,7 +27,14 @@ const InfoProduct = (props: InfoProductProps) => {
                 <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {product.productName}
                 </h1>
+                <div className='flex items-center justify-between flex-wrap gap-2'>
                 <ItemTasteOrigin taste={product.taste} origin={product.origin} />
+                  {product.isOffered && (
+                  <span className="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100">
+                  En oferta
+                 </span>
+                 )}
+                 </div>
             </div>
 
             <Separator className="bg-gray-200 dark:bg-gray-700" />

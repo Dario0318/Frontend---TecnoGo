@@ -17,10 +17,13 @@ export default function CategoryPage() {
     const categorySlug = params.categorySlug
     const { result, loading }: ResponseType = useGetCategoryProduct(categorySlug)
     const [filterOrigin, setFilterOrigin] = useState('')
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+
 
     const filteredProducts: ProductType[] = Array.isArray(result)
         ? result.filter((product: ProductType) =>
-            filterOrigin === '' ? true : product.origin === filterOrigin
+            (filterOrigin === '' || product.origin === filterOrigin) &&
+            (product.price >= priceRange.min && product.price <= priceRange.max)
         ) : [];
 
     return (
@@ -73,6 +76,7 @@ export default function CategoryPage() {
                     {/* Filters Sidebar */}
                     <div className="lg:w-1/4 mb-6 lg:mb-0">
                         <FilterControlsCategory 
+                            setPriceRange={(min, max) => setPriceRange({ min, max })}
                             setFilterOrigin={setFilterOrigin} 
                         />
                     </div>

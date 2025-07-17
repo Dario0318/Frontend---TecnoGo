@@ -49,12 +49,21 @@ const LovedItemProduct = (props: LovedItemProductProps) => {
                     <p className='text-xl font-bold text-emerald-600 dark:text-emerald-400'>
                         {formatPrice(product.price)}
                     </p>
-                    
-                    <ItemTasteOrigin 
-                        origin={product.origin} 
-                        taste={product.taste}
-                        className="text-sm"
-                    />
+                    <div className="flex items-start justify-between">
+                     <div className="flex gap-2">
+                      <ItemTasteOrigin 
+                       origin={product.origin} 
+                      taste={product.taste}
+                      className="text-sm"
+                      />
+                     </div>
+                     {product.isOffered && (
+                     <span className="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100">
+                     En oferta
+                     </span>
+                     )}
+                </div>
+
                 </div>
 
                 {/* Actions */}

@@ -98,8 +98,8 @@ const ChooseCategory = () => {
                 {/* View all button - neutral style */}
                 <div className="flex justify-center mt-8">
                     <button
-                        onClick={() => router.push('/categories')}
-                        className="px-6 py-3 text-sm font-medium transition-colors rounded-md text-gray-800 bg-gray-100 hover:bg-gray-200 border border-gray-300 shadow-sm hover:shadow-md"
+                        onClick={() => router.push('/categoryPage')}
+                        className=" cursor-pointer px-6 py-3 text-sm font-medium transition-colors rounded-md text-gray-800 bg-gray-100 hover:bg-gray-200 border border-gray-300 shadow-sm hover:shadow-md"
                     >
                         Ver todas las categorías
                     </button>

@@ -10,51 +10,13 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
-const categories = [
-  {
-    title: "Refrigeradoras",
-    slug: "refrigeradoras",
-    description: "Enfría tus alimentos con lo último en tecnología"
-  },
-  {
-    title: "Electro Belleza",
-    slug: "electro-belleza",
-    description: "Cuidado personal profesional"
-  },
-  {
-    title: "Climatización",
-    slug: "climatizacion",
-    description: "Controla la temperatura de tus espacios"
-  },
-  {
-    title: "Cocina",
-    slug: "cocina",
-    description: "Electrodomésticos para chefs en casa"
-  },
-  {
-    title: "Aspirado",
-    slug: "aspirado",
-    description: "Manten tu hogar impecable"
-  },
-  {
-    title: "Limpieza",
-    slug: "limpieza",
-    description: "Soluciones para un hogar reluciente"
-  },
-  {
-    title: "Electrodomésticos Cocina",
-    slug: "electrodomesticos-cocina",
-    description: "Todo para equipar tu cocina"
-  },
-    {
-    title: "Mas categorias",
-    slug: "/Categories",
-    description: "Descubre todas nuestras categorias"
-  },
-]
+import { CategoryType } from "@/types/category"
+import { useGetCategories } from "@/api/getProducts"
+import { ResponseType } from "@/types/response"
 
 const MenuList = () => {
+      const { result, loading } : ResponseType = useGetCategories() 
+      if (loading || !result) return null
   return (
     <NavigationMenu>
       <NavigationMenuList className="space-x-1">
@@ -78,21 +40,18 @@ const MenuList = () => {
           </NavigationMenuTrigger>
           <NavigationMenuContent className="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
             <ul className="grid w-[300px] gap-1 p-2 md:w-[400px] md:grid-cols-2 lg:w-[500px]">
-              {categories.map((category) => (
+                {result.map((category: CategoryType) => (
                 <ListItem
                   key={category.slug}
-                  title={category.title}
+                  title={category.categoryName}
                   href={`/category/${category.slug}`}
-                >
-                  {category.description}
-                </ListItem>
-              ))}
+                />))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-  )
+  ) 
 }
 
 const ListItem = React.forwardRef<

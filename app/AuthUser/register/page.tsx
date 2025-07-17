@@ -1,30 +1,29 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
-import { LoginForm } from "@/app/AuthUser/register/components/registerForm"
-import { ArrowLeft } from "lucide-react"
+import { Suspense } from "react"
+import { RegisterForm} from "./components/registerForm"
 import Link from "next/link"
+import { Switch } from "@/components/ui/switch"
+import { ArrowLeft } from "lucide-react"
 import { useTheme } from "next-themes";
-import { Switch } from "@/components/ui/switch";
 
-export default function Page() {
-    const { theme, setTheme } = useTheme();
-    const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+export default function RegisterPage() {
+      const { theme, setTheme } = useTheme();
 
+      const toggleTheme = () => {
+      setTheme(theme === "dark" ? "light" : "dark");
+      };
   return (
-    <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900">
-      {/* Contenedor principal */}
-      <div className="container mx-auto flex min-h-screen flex-col p-6 md:p-12">
-        {/* Encabezado con navegación */}
-        <div className="flex items-center justify-between">
+ <Suspense fallback={<div className="text-center mt-10">Cargando...</div>}>
+      <div className="grid min-h-screen  bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col p-4 md:p-8 relative">
+        <div className="flex items-center justify-between pl-6 gap-10 mb-1">
           <Link 
-            href="/AuthUser/login" 
-            className="flex items-center gap-2 group transition-colors"
+            href="/" 
+            className="flex items-center gap-2 group transition-colors "
           >
-            <ArrowLeft className="w-5 h-5 text-gray-700 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400" />
+            <ArrowLeft className="w-5 h-2 text-gray-700 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400" />
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
-              Volver atras
+              Volver al inicio
             </span>
           </Link>
           <div className="flex items-center gap-2">
@@ -35,46 +34,9 @@ export default function Page() {
             />
           </div>
         </div>
-
-        {/* Contenido centrado */}
-        <div className="flex flex-1 items-center justify-center py-8">
-          <div className="w-full max-w-md">
-            {/* Logo y título */}
-            <div className="mb-8 flex flex-col items-center gap-2">
-              <Link href="/" className="flex items-center gap-2">
-                <div className="bg-emerald-600 text-white dark:bg-emerald-400 dark:text-gray-900 flex size-10 items-center justify-center rounded-md shadow-sm">
-                  <img 
-                    className="size-6" 
-                    src="/favicon.ico" 
-                    alt="Logo TecnoGo" 
-                  />
-                </div>
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Tecno<span className="text-emerald-600 dark:text-emerald-400">Go</span>
-                </h1>
-              </Link>
-              <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
-                Únete a nuestra comunidad
-              </h2>
-            </div>
-
-            {/* Formulario de registro */}
-            <LoginForm />
-
-            {/* Enlace a políticas */}
-            <p className="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
-              Al registrarte, aceptas nuestros{' '}
-              <Link href="/terms" className="hover:underline text-emerald-600 dark:text-emerald-400">
-                Términos de servicio
-              </Link>{' '}
-              y{' '}
-              <Link href="/privacy" className="hover:underline text-emerald-600 dark:text-emerald-400">
-                Política de privacidad
-              </Link>
-            </p>
-          </div>
-        </div>
+      <RegisterForm />
       </div>
-    </div>
+      </div>
+    </Suspense>
   )
 }

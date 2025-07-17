@@ -13,12 +13,12 @@ const ItemTasteOrigin = (props: ItemTasteOriginType) => {
     return (
         <div className={cn('flex flex-wrap gap-2', className)}>
             {taste && (
-                <span className="inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
+                <span className="inline-flex items-center rounded-full bg-emerald-600 px-2.5 py-0.5 text-xs font-medium text-white dark:bg-emerald-700">
                     {taste}
                 </span>
             )}
             {origin && (
-                <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-200">
+                <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs bg-gray-800 text-xs font-medium text-white dark:bg-gray-700">
                     {origin}
                 </span>
             )}
