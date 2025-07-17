@@ -24,7 +24,7 @@ const CartItem = (props: CartItemProps) => {
                 <Link href={`/product/${product.slug}`}>
                     <ProductImageMiniature 
                         slug={product.slug} 
-                        url={product.images[0].url}
+                        url={product.images?.[0]?.url ?? "/public/fallback-category.jpg"}
                         className="h-24 w-24 sm:h-32 sm:w-32"
                     />
                 </Link>
