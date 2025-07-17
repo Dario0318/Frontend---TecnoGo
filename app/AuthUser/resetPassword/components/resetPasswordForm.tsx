@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter } from "next/navigation"
 import { useState } from "react"
-import { useResetPassword } from "@/api/useResetPassword"
+import { useResetPassword } from "@/hooks/useResetPassword"
 import {
   Card, CardContent, CardDescription, CardHeader, CardTitle
 } from "@/components/ui/card"

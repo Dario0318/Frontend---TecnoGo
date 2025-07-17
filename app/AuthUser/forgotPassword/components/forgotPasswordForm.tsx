@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useForgotPassword } from "@/api/useForgetPassword"
+import { useForgotPassword } from "@/hooks/useForgetPassword"
 
 export function ForgotPasswordForm() {
   const [email, setEmail] = useState("")

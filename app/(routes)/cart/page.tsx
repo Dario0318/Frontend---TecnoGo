@@ -5,7 +5,7 @@ import { useCart } from "@/hooks/use-cart"
 import { formatPrice } from "@/lib/formatPrice"
 import CartItem from "@/app/(routes)/cart/components/cart-item"
 import { loadStripe } from "@stripe/stripe-js"
-import { makePaymentRequest } from "@/api/payment"
+import { makePaymentRequest } from "@/services/payment"
 import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
 
