@@ -22,7 +22,7 @@ const RelatedProducts = ({ currentProductId }: RelatedProductsProps) => {
   const { addItem } = useCart();
 
   // Filtrar el producto actual
-  const filteredProducts = result?.filter((product: ProductType) => product.id !== currentProductId).slice(0, 4) || [];
+  const filteredProducts = result?.filter((product: ProductType) => product.id !== Number(currentProductId)).slice(0, 4) || [];
 
   return (
     <section className="py-6 bg-white dark:bg-gray-900">
