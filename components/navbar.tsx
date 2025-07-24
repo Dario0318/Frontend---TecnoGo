@@ -8,6 +8,7 @@ import { useCart } from "@/hooks/use-cart"
 import { useLovedProducts } from "@/hooks/use-loved-products"
 import { Badge } from "./ui/badge"
 import  UserButton  from "./userButton" 
+import LocationSelector from "./location"
 
 const Navbar = () => {
     const router = useRouter()
@@ -30,6 +31,7 @@ const Navbar = () => {
                 {/* Desktop Menu - Centered */}
                 <div className="hidden flex-1 mx-4 md:flex md:justify-center">
                     <MenuList/>
+                    <LocationSelector />
                 </div>
 
                 {/* Action Icons */}

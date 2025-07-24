@@ -1,0 +1,37 @@
+[
+  {
+    "departamento": "Lima",
+    "provincias": [
+      {
+        "provincia": "Lima",
+        "distritos": ["Miraflores", "San Isidro", "Surco"]
+      },
+      {
+        "provincia": "Huaral",
+        "distritos": ["Huaral", "Chancay"]
+      },
+      {
+        "provincia": "Cañete",
+        "distritos": ["San Vicente", "Imperial", "San Luis", "Cerro Azul","Nuevo Imperial","Quilmana"]
+      }
+    ]
+  },
+  {
+    "departamento": "Cusco",
+    "provincias": [
+      {
+        "provincia": "Cusco",
+        "distritos": ["Cusco", "San Sebastián", "San Jerónimo"]
+      }
+    ]
+  },
+    {
+    "departamento": "Ica",
+    "provincias": [
+      {
+        "provincia": "Chincha",
+        "distritos": ["Chincha Alta", "Chincha Baja", "Sunampe","Alto Laran", "Pueblo Nuevo", "El Carmen"]
+      }
+    ]
+  }
+]

@@ -18,12 +18,14 @@ export default function CategoryPage() {
     const { result, loading }: ResponseType = useGetCategoryProduct(categorySlug)
     const [filterOrigin, setFilterOrigin] = useState('')
     const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+    const [FilterDisponibilidad, setFilterDisponibilidad] = useState('')
 
 
     const filteredProducts: ProductType[] = Array.isArray(result)
         ? result.filter((product: ProductType) =>
             (filterOrigin === '' || product.origin === filterOrigin) &&
-            (product.price >= priceRange.min && product.price <= priceRange.max)
+            (product.price >= priceRange.min && product.price <= priceRange.max) &&
+            (FilterDisponibilidad === '' || product.Disponibilidad === FilterDisponibilidad)
         ) : [];
 
     return (
@@ -78,6 +80,7 @@ export default function CategoryPage() {
                         <FilterControlsCategory 
                             setPriceRange={(min, max) => setPriceRange({ min, max })}
                             setFilterOrigin={setFilterOrigin} 
+                            setFilterDisponibilidad={setFilterDisponibilidad}
                         />
                     </div>
 
@@ -118,7 +121,7 @@ export default function CategoryPage() {
                                             Intenta con otros filtros o vuelve más tarde
                                         </p>
                                         <button
-                                            onClick={() => setFilterOrigin('')}
+                                            onClick={() => {setFilterOrigin('');setFilterDisponibilidad('')}}
                                             className="mt-4 px-4 py-2 text-sm font-medium rounded-md text-gray-800 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200"
                                         >
                                             Limpiar filtros

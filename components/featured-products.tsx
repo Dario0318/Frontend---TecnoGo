@@ -92,9 +92,9 @@ const FeaturedProducts = () => {
                             <div className="flex flex-col gap-2 mt-3">
 
                             <div className="flex gap-2 flex-wrap">
-                                {product.taste && (
+                                {product.Disponibilidad && (
                                 <span className="px-2 py-1 font-medium rounded-full bg-emerald-600 text-xs font-medium text-white dark:bg-emerald-700">
-                                    {product.taste}
+                                    {product.Disponibilidad}
                                 </span>
                                 )}
                                 {product.origin && (

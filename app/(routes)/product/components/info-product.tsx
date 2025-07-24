@@ -28,7 +28,7 @@ const InfoProduct = (props: InfoProductProps) => {
                     {product.productName}
                 </h1>
                 <div className='flex items-center justify-between flex-wrap gap-2'>
-                <ItemTasteOrigin taste={product.taste} origin={product.origin} />
+                <ItemTasteOrigin taste={product.Disponibilidad} origin={product.origin} />
                   {product.isOffered && (
                   <span className="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100">
                   En oferta

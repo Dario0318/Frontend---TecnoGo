@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import NextTopLoader from 'nextjs-toploader';
 import LayoutWrapper from "@/components/LayoutWrapper";
 import WhatsAppChat from "@/components/whatsapp";
+import Chatbot from "@/components/chatbot";
 
 
 const geistSans = Geist({
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps){
               <LayoutWrapper >
               {children}
               <WhatsAppChat />
+              <Chatbot /> 
               <Toaster />
               </LayoutWrapper >
           </ThemeProvider>

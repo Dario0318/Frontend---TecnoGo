@@ -8,6 +8,7 @@ import InfoProduct from "../components/info-product"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 import Link from "next/link"
 import { SlashIcon } from "lucide-react"
+import  RelatedProducts  from "../components/related-products"
 
 export default function ProductPage() {
   const params = useParams()
@@ -17,7 +18,6 @@ export default function ProductPage() {
   if (result == null) {
     return <SkeletonProduct />
   }
-
   const product = result.find((item: { slug: string }) => item.slug === productSlug)
 
   if (!product) {
@@ -94,11 +94,13 @@ export default function ProductPage() {
         </div>
 
         {/* Related Products Section */}
-        <div className="mt-16">
-          <h3 className="mb-8 text-2xl font-bold text-gray-900 dark:text-white">
+        <div className="w-full mt-12">
+          <h3 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
             Productos relacionados
           </h3>
-          {/* Aquí podrías agregar un componente RelatedProducts */}
+          <div className="grid grid-cols-1 gap-6">
+          <RelatedProducts currentProductId={product.id}/>
+          </div>
         </div>
       </div>
     </div>

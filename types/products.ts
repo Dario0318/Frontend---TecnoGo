@@ -5,7 +5,7 @@ export type ProductType = {
   description: string;
   active: boolean;
   isFeatured: boolean;
-  taste: string;
+  Disponibilidad: string;
   origin: string;
   price: number;
   images: {

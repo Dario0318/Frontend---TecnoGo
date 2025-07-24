@@ -24,9 +24,9 @@ const ProductCard = (props: ProductCardProps) => {
             <Link href={`/product/${product.slug}`} className="block">
                 {/* Badges */}
                 <div className="absolute left-3 top-3 z-10 flex flex-col items-start gap-2">
-                    {product.taste && (
+                    {product.Disponibilidad && (
                         <span className="rounded-full bg-emerald-600 px-3 py-1 text-xs font-medium text-white dark:bg-emerald-700">
-                            {product.taste}
+                            {product.Disponibilidad}
                         </span>
                     )}
                     {product.origin && (

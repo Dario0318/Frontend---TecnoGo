@@ -53,7 +53,7 @@ const LovedItemProduct = (props: LovedItemProductProps) => {
                      <div className="flex gap-2">
                       <ItemTasteOrigin 
                        origin={product.origin} 
-                      taste={product.taste}
+                      taste={product.Disponibilidad}
                       className="text-sm"
                       />
                      </div>

@@ -11,9 +11,8 @@ import Link from "next/link"
 
 export default function CartPage() {
     const { items, removeAll } = useCart()
-    const totalPrice = items.reduce((total, product) => total + product.price, 0)
+    const totalPrice = items.reduce((total, product) => total + (product.price * (product.quantity || 1)), 0)
     const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '')
-
     const handleCheckout = async () => { 
         try {
             const stripe = await stripePromise
